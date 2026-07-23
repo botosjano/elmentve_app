@@ -11,19 +11,16 @@ import { Button } from "@/components/ui/Button";
 export default function Home() {
   return (
     <div className="relative flex flex-1 flex-col">
-      {/* Finom háttértextúra a visual kitből */}
-      <Image
-        src="/brand/bg-desktop.svg"
-        alt=""
-        aria-hidden
-        fill
-        priority
-        className="pointer-events-none -z-10 object-cover opacity-70"
-      />
+      {/* Teljes 3D key visual háttér, lassú Ken Burns zoommal + világos scrim
+          az olvashatóságért. */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <Image src="/brand/key-visual.png" alt="" fill priority className="kenburns object-cover" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(247,245,255,0.70)_0%,rgba(247,245,255,0.58)_45%,rgba(247,245,255,0.86)_100%)]" />
+      </div>
 
       <header className="mx-auto flex w-full max-w-content items-center justify-between px-5 py-5 sm:px-8">
         <Logo />
-        <Button href="/belepes" variant="secondary" className="px-4 py-2 text-sm">
+        <Button href="/app" variant="secondary" className="px-4 py-2 text-sm">
           Belépés
         </Button>
       </header>
@@ -65,7 +62,7 @@ export default function Home() {
               <Mic className="h-5 w-5" />
             </button>
           </div>
-          <Button href="/belepes" className="mt-4 w-full">
+          <Button href="/onboarding" className="mt-4 w-full">
             Kezdjük el <ArrowRight className="h-4 w-4" />
           </Button>
         </div>

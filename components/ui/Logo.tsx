@@ -8,7 +8,7 @@ import Image from "next/image";
 export function Logo({ className = "", showWordmark = true }: { className?: string; showWordmark?: boolean }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <Image src="/brand/mark.svg" alt="Elmentve" width={32} height={32} className="h-8 w-8" priority />
+      <Image src="/brand/mark-tile.png" alt="Elmentve" width={40} height={40} className="h-9 w-9 rounded-[11px] shadow-[0_8px_20px_-10px_rgba(107,94,235,0.7)]" priority />
       {showWordmark && (
         <Image src="/brand/wordmark.svg" alt="Elmentve" width={104} height={24} className="h-5 w-auto" priority />
       )}
