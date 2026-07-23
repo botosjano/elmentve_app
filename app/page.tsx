@@ -23,7 +23,7 @@ export default function Home() {
 
       <header className="mx-auto flex w-full max-w-content items-center justify-between px-5 py-5 sm:px-8">
         <Logo />
-        <Button href="/belepes" variant="secondary" className="px-4 py-2 text-sm">
+        <Button href="/app" variant="secondary" className="px-4 py-2 text-sm">
           Belépés
         </Button>
       </header>
@@ -65,7 +65,7 @@ export default function Home() {
               <Mic className="h-5 w-5" />
             </button>
           </div>
-          <Button href="/belepes" className="mt-4 w-full">
+          <Button href="/onboarding" className="mt-4 w-full">
             Kezdjük el <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
