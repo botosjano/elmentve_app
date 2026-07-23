@@ -25,7 +25,7 @@ export default function Onboarding() {
     <div className="relative flex flex-1 flex-col">
       <header className="mx-auto w-full max-w-content px-5 py-6 sm:px-8">
         <Link href="/" className="inline-flex items-center gap-2.5">
-          <Image src="/brand/mark.svg" alt="" width={40} height={40} className="h-9 w-9" priority />
+          <Image src="/brand/mark-tile.png" alt="" width={40} height={40} className="h-9 w-9 rounded-[11px] shadow-[0_8px_20px_-10px_rgba(107,94,235,0.7)]" priority />
           <Image src="/brand/wordmark.svg" alt="Elmentve" width={120} height={28} className="h-6 w-auto" priority />
         </Link>
       </header>
