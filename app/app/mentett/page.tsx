@@ -1,5 +1,8 @@
-import { Placeholder } from "@/components/app/Placeholder";
-export const metadata = { title: "Elmentett dolgok" };
+import type { Metadata } from "next";
+import { SavedItemsList } from "@/components/app/SavedItemsList";
+
+export const metadata: Metadata = { title: "Elmentett dolgok" };
+
 export default function Page() {
-  return <Placeholder title="Elmentett dolgok" note="A kereshető elmentett tételek listája a következő lépésben készül el." />;
+  return <SavedItemsList />;
 }
