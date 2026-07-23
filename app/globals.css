@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Elmentve design tokenek (implementation-handoff.md v1) ──
+   Nyugodt, emberi biztonsági háló. NINCS dark mode, admin-hangulat,
+   statisztika-dashboard vagy marketing-kártyarács. */
+@theme {
+  /* Színek */
+  --color-bg: #f7f5ff; /* oldalháttér */
+  --color-ink: #18245d; /* fő szöveg, mély indigó */
+  --color-lilac: #8a7cf6; /* másodlagos lila */
+  --color-lilac-soft: #b8b0ff; /* márkajel világos lila */
+  --color-indigo: #6b5eeb; /* márkajel mély lila */
+  --color-mint: #22d6b2; /* menta siker / elsődleges CTA */
+  --color-panel: rgba(255, 255, 255, 0.76); /* üveg-panel */
+  --color-panel-line: rgba(138, 124, 246, 0.24); /* panelvonal */
+  --color-muted: #5b6488; /* másodlagos szöveg (nem túl halvány) */
+
+  /* Tipográfia */
+  --font-sans: var(--font-manrope), "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Sugár (handoff: panel 20-24, gomb 14-18) */
+  --radius-panel: 22px;
+  --radius-btn: 16px;
+
+  /* Layout (handoff: tartalom max 1120, bal nav 244) */
+  --spacing-content: 1120px;
+  --spacing-nav: 244px;
+
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(138, 124, 246, 0.2);
+}
+
+/* Üveg-panel: a kötelező felületi alapelem. */
+.panel {
+  background: var(--color-panel);
+  border: 1px solid var(--color-panel-line);
+  border-radius: var(--radius-panel);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Elsődleges CTA: menta, a fő művelet (mentés/jóváhagyás). */
+.cta {
+  background: var(--color-mint);
+  color: #05372d;
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  transition: transform 220ms var(--ease-standard), box-shadow 220ms var(--ease-standard), filter 220ms var(--ease-standard);
+  box-shadow: 0 12px 28px -14px rgba(34, 214, 178, 0.7);
+}
+.cta:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.05);
+  box-shadow: 0 18px 36px -16px rgba(34, 214, 178, 0.8);
+}
+.cta:active {
+  transform: translateY(0) scale(0.99);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
 }

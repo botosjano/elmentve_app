@@ -1,64 +1,78 @@
 import Image from "next/image";
+import { Mic, ArrowRight } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
+import { Button } from "@/components/ui/Button";
 
+/**
+ * Scaffold-kezdőlap: a design token rendszert és a márkát demonstrálja
+ * (a végleges 00-onboarding / 01-home képernyők a design-targetek alapján
+ * a következő kártyában készülnek).
+ */
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="relative flex flex-1 flex-col">
+      {/* Finom háttértextúra a visual kitből */}
+      <Image
+        src="/brand/bg-desktop.svg"
+        alt=""
+        aria-hidden
+        fill
+        priority
+        className="pointer-events-none -z-10 object-cover opacity-70"
+      />
+
+      <header className="mx-auto flex w-full max-w-content items-center justify-between px-5 py-5 sm:px-8">
+        <Logo />
+        <Button href="/belepes" variant="secondary" className="px-4 py-2 text-sm">
+          Belépés
+        </Button>
+      </header>
+
+      <main className="mx-auto flex w-full max-w-content flex-1 flex-col items-center px-5 pb-16 pt-8 text-center sm:px-8 sm:pt-16">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-lilac">
+          Hétköznapi biztonsági háló
+        </p>
+        <h1 className="mt-4 max-w-2xl text-[2rem] font-medium leading-[1.15] tracking-tight text-ink sm:text-[2.75rem]">
+          Fotózd le. Ellenőrizd. Mi megőrizzük, és időben szólunk.
+        </h1>
+        <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:text-lg">
+          Lejáratfigyelő és garanciaszéf: műszaki vizsga, okmány, biztosítás, nyugta és jótállás
+          egy helyen. Írd le egy mondatban, mit szeretnél megőrizni.
+        </p>
+
+        {/* A signature természetes-nyelvű mentőmező (előnézet). */}
+        <div className="panel mt-10 w-full max-w-xl p-5 text-left">
+          <label htmlFor="save" className="text-sm font-semibold text-ink">
+            Mit mentsünk el?
+          </label>
+          <p className="mt-1 text-[13px] text-muted">
+            Írd le, mit szeretnél elmenteni, vagy miről kérsz emlékeztetőt.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+          <div className="mt-3 flex items-end gap-2">
+            <textarea
+              id="save"
+              rows={2}
+              disabled
+              placeholder="Például: Jövő kedden 14:30-kor időpontom van. Szólj előtte egy nappal és két órával."
+              className="min-h-11 flex-1 resize-none rounded-[var(--radius-btn)] border border-panel-line bg-white/70 px-4 py-3 text-sm text-ink outline-none placeholder:text-muted/70"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <button
+              type="button"
+              disabled
+              aria-label="Diktálás"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--radius-btn)] border border-panel-line bg-white/70 text-lilac"
+            >
+              <Mic className="h-5 w-5" />
+            </button>
+          </div>
+          <Button href="/belepes" className="mt-4 w-full">
+            Kezdjük el <ArrowRight className="h-4 w-4" />
+          </Button>
         </div>
+
+        <p className="mt-6 text-[13px] text-muted">
+          Bankkártya nélkül. 7 nap teljes Pro, utána ingyenes csomag.
+        </p>
       </main>
     </div>
   );
