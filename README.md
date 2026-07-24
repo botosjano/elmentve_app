@@ -37,6 +37,17 @@ npm run build
 npm run lint
 ```
 
+## Animáció-stack (flotta-szabvány)
+
+Minden webes projekt alapértelmezett animáció/scroll-stackje: **`framer-motion` + `lenis`**
+(Janos döntése, 2026-07-24) — a buttery-smooth momentum-görgetés + elemenként késleltetett
+(staggered) fade+slide-up appear-animációk reprodukálására.
+
+- Új szekció/feature: **ezzel épül** (Lenis smooth-scroll + Framer Motion `whileInView`
+  staggered delay-jel, `viewport={{ once: true }}`).
+- `prefers-reduced-motion` kötelező tisztelet (Lenis + reveal kikapcs).
+- A kész UI retrofit nem sürgős/blokkoló.
+
 ## Állapot
 
 - [x] Kártya 18 — projekt scaffold + design token rendszer, PWA alap, brand assetek
