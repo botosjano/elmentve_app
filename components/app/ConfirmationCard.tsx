@@ -2,9 +2,11 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Quote, Tag, CalendarClock, Bell, Globe, Pencil, Check, CheckCircle2, FileText, Home } from "lucide-react";
-import { parseInput, humanDate } from "@/lib/parse";
+import { parseInput, humanDate, TIMEZONE, type ParsedSuggestion } from "@/lib/parse";
+import { readPhoto } from "@/lib/photo";
 
 type FieldKey = "title" | "datetime" | "notifications" | "timezone";
 
@@ -13,7 +15,20 @@ type FieldKey = "title" | "datetime" | "notifications" | "timezone";
 export function ConfirmationCard() {
   const params = useSearchParams();
   const q = params.get("q") ?? "";
-  const parsed = useMemo(() => parseInput(q || "Emlékeztető"), [q]);
+  const isFoto = params.get("foto") === "1";
+  const photo = useMemo(() => (isFoto ? readPhoto() : null), [isFoto]);
+
+  const parsed = useMemo<ParsedSuggestion>(() => {
+    if (isFoto) {
+      // Fotó-alapú stub: jellemzően nyugta/garancia. A valós AI-kiolvasás a
+      // Supabase-szakaszban jön; a felhasználó itt is MINDIG jóváhagy.
+      const d = new Date();
+      d.setFullYear(d.getFullYear() + 2);
+      const date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+      return { title: "Vásárlás és garancia", date, time: "09:00", allDay: true, notifications: "30 nappal előtte · 7 nappal előtte", timezone: TIMEZONE, source: "Feltöltött fotó" };
+    }
+    return parseInput(q || "Emlékeztető");
+  }, [isFoto, q]);
 
   const [fields, setFields] = useState({
     title: parsed.title,
@@ -50,15 +65,28 @@ export function ConfirmationCard() {
   return (
     <div className="mx-auto max-w-2xl">
       <h1 className="mb-6 text-[2rem] font-medium tracking-tight text-ink sm:text-[2.5rem]">
-        Ezt értettük belőle.
+        {isFoto ? "Ezt olvastuk ki a fotóból." : "Ezt értettük belőle."}
       </h1>
 
       <div className="panel p-5 sm:p-7">
-        {/* Eredeti mondat */}
-        <div className="flex gap-3 rounded-[var(--radius-btn)] bg-lilac/10 p-4">
-          <Quote className="h-5 w-5 shrink-0 text-lilac" />
-          <p className="text-[15px] leading-relaxed text-ink/90">{parsed.source}</p>
-        </div>
+        {/* Forrás: feltöltött fotó előnézete vagy az eredeti mondat */}
+        {isFoto ? (
+          <div className="flex items-center gap-4 rounded-[var(--radius-btn)] bg-lilac/10 p-3">
+            {photo ? (
+              <Image src={photo} alt="Feltöltött fotó" width={72} height={72} unoptimized className="h-16 w-16 shrink-0 rounded-xl object-cover" />
+            ) : (
+              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-white/70 text-lilac"><FileText className="h-7 w-7" /></span>
+            )}
+            <p className="text-[14px] leading-relaxed text-ink/90">
+              A fotóból ezt a mentési javaslatot állítottuk össze. Ellenőrizd, szerkeszd, vagy hagyd jóvá.
+            </p>
+          </div>
+        ) : (
+          <div className="flex gap-3 rounded-[var(--radius-btn)] bg-lilac/10 p-4">
+            <Quote className="h-5 w-5 shrink-0 text-lilac" />
+            <p className="text-[15px] leading-relaxed text-ink/90">{parsed.source}</p>
+          </div>
+        )}
 
         {/* Strukturált mezők */}
         <div className="mt-4 divide-y divide-panel-line">
