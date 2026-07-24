@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Car, IdCard, ShoppingBag, Check } from "lucide-react";
+import { ArrowRight, Car, IdCard, ShoppingBag, Check, ImagePlus } from "lucide-react";
+import { storePhoto } from "@/lib/photo";
 
 const PLACEHOLDER = "Jövő kedden 14:30-kor időpontom van. Szólj előtte egy nappal és két órával.";
 
@@ -18,8 +19,15 @@ const TEMPLATES = [
 export default function Onboarding() {
   const router = useRouter();
   const [text, setText] = useState("");
+  const fileRef = useRef<HTMLInputElement>(null);
 
   const go = (q: string) => router.push(`/app/megerosites?q=${encodeURIComponent(q)}`);
+  const onPhoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    await storePhoto(file);
+    router.push("/app/megerosites?foto=1");
+  };
 
   return (
     <div className="relative flex flex-1 flex-col">
@@ -53,6 +61,16 @@ export default function Onboarding() {
         >
           <span className="text-[#05372d]">Folytatás</span>
           <ArrowRight className="h-5 w-5 text-[#05372d]" />
+        </button>
+
+        {/* Fotó-belépés: fotózz le egy dokumentumot, a rendszer javaslatot ad. */}
+        <input ref={fileRef} type="file" accept="image/*" capture="environment" hidden onChange={onPhoto} />
+        <button
+          type="button"
+          onClick={() => fileRef.current?.click()}
+          className="mt-3 flex w-full items-center justify-center gap-2 rounded-[var(--radius-btn)] border border-lilac/40 bg-white py-3.5 text-[15px] font-semibold text-indigo transition-colors hover:bg-lilac/5"
+        >
+          <ImagePlus className="h-5 w-5 text-lilac" /> Vagy fotózz le egy dokumentumot
         </button>
 
         {/* Sablonok */}
