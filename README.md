@@ -39,12 +39,14 @@ npm run lint
 
 ## Animáció-stack (flotta-szabvány)
 
-Minden webes projekt alapértelmezett animáció/scroll-stackje: **`framer-motion` + `lenis`**
-(Janos döntése, 2026-07-24) — a buttery-smooth momentum-görgetés + elemenként késleltetett
-(staggered) fade+slide-up appear-animációk reprodukálására.
+Minden webes projekt alapértelmezett animáció/scroll-stackje: **saját könnyű `Reveal`
+(IntersectionObserver, 0 külső lib) + `lenis`** (Janos döntése, 2026-07-24) — a
+buttery-smooth momentum-görgetés + elemenként késleltetett (staggered) fade+slide-up
+appear-animációk reprodukálására. **NEM `framer-motion`** (a saját Reveal kevesebb JS,
+jobb Lighthouse landingen).
 
-- Új szekció/feature: **ezzel épül** (Lenis smooth-scroll + Framer Motion `whileInView`
-  staggered delay-jel, `viewport={{ once: true }}`).
+- Új szekció/feature: **ezzel épül** (Lenis smooth-scroll + IntersectionObserver-alapú
+  Reveal, staggered CSS `transition-delay`-jel).
 - `prefers-reduced-motion` kötelező tisztelet (Lenis + reveal kikapcs).
 - A kész UI retrofit nem sürgős/blokkoló.
 
