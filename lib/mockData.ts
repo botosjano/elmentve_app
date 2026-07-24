@@ -83,3 +83,38 @@ export const UPCOMING = ITEMS.filter((i) => i.due).slice(0, 3);
 
 /** Kezdőlap: legutóbb elmentett tételek. */
 export const SAVED = [ITEMS[3], ITEMS[4], ITEMS[7]]; // Bosch, Útlevél, Albérleti
+
+// ── Emlékeztetők (05-reminders) ──
+export type Channel = "email" | "sms" | "chat";
+export type Bucket = "Ma" | "Következő 7 nap" | "Később";
+export type Reminder = {
+  id: string; title: string; subtitle: string; dateLabel: string; time: string;
+  channel: Channel; bucket: Bucket; icon: IconKey; tint: string;
+};
+
+export const REMINDERS: Reminder[] = [
+  { id: "m1", title: "Fogorvosi időpont", subtitle: "Dr. Kovács Fogorvosi Rendelő", dateLabel: "Ma", time: "16:00", channel: "email", bucket: "Ma", icon: "appointment", tint: "bg-lilac/12" },
+  { id: "m2", title: "Olajcsere", subtitle: "Toyota Yaris – RZR-123", dateLabel: "Aug. 4.", time: "18:00", channel: "chat", bucket: "Következő 7 nap", icon: "car", tint: "bg-lilac/12" },
+  { id: "m3", title: "Műszaki vizsga", subtitle: "Toyota Yaris – RZR-123", dateLabel: "Aug. 12.", time: "08:00", channel: "email", bucket: "Következő 7 nap", icon: "car", tint: "bg-lilac/12" },
+  { id: "m4", title: "Lakásbiztosítás forduló", subtitle: "Otthon Biztosító", dateLabel: "Sep. 5.", time: "08:00", channel: "email", bucket: "Később", icon: "house", tint: "bg-lilac/12" },
+];
+
+export const BUCKET_ORDER: Bucket[] = ["Ma", "Következő 7 nap", "Később"];
+
+// ── Beállítások / profil (06-settings-pro) ──
+export const PROFILE = {
+  name: "Anna Kovács",
+  email: "anna.kovacs@example.com",
+  initials: "A",
+  timezone: "Europe/Budapest",
+  defaultTime: "08:00",
+  quietHours: "21:00 – 08:00",
+};
+
+export const PLAN = {
+  trialDaysLeft: 7,
+  activeItems: 3,
+  activeLimit: 5,
+  storageUsedMb: 18,
+  storageLimitMb: 100,
+};

@@ -1,5 +1,8 @@
-import { Placeholder } from "@/components/app/Placeholder";
-export const metadata = { title: "Profil" };
+import type { Metadata } from "next";
+import { ProfileView } from "@/components/app/ProfileView";
+
+export const metadata: Metadata = { title: "Profil" };
+
 export default function Page() {
-  return <Placeholder title="Profil" note="A profil és fiókbeállítások a következő lépésben készülnek el." />;
+  return <ProfileView />;
 }
