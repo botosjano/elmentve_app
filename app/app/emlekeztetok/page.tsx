@@ -1,5 +1,8 @@
-import { Placeholder } from "@/components/app/Placeholder";
-export const metadata = { title: "Emlékeztetők" };
+import type { Metadata } from "next";
+import { RemindersView } from "@/components/app/RemindersView";
+
+export const metadata: Metadata = { title: "Emlékeztetők" };
+
 export default function Page() {
-  return <Placeholder title="Emlékeztetők" note="A közelgő értesítések, elintézés és halasztás a következő lépésben készül el." />;
+  return <RemindersView />;
 }
