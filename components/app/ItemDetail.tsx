@@ -42,7 +42,7 @@ export function ItemDetail({ item }: { item: Item }) {
         <div>
           <h1 className="text-[1.75rem] font-medium tracking-tight text-ink sm:text-[2.25rem]">{item.title}</h1>
           {item.status && (
-            <span className="mt-1.5 inline-flex items-center gap-1.5 rounded-full bg-mint/15 px-3 py-1 text-sm font-semibold text-mint">
+            <span className="mt-1.5 inline-flex items-center gap-1.5 rounded-full bg-mint/15 px-3 py-1 text-sm font-semibold text-mint-ink">
               <CheckCircle2 className="h-4 w-4" /> {item.status}
             </span>
           )}

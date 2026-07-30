@@ -1,7 +1,25 @@
 import Image from "next/image";
-import { Mic, ArrowRight } from "lucide-react";
+import { Mic, ArrowRight, MessageSquareText, ShieldCheck, BellRing } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
+
+const HOW_IT_WORKS = [
+  {
+    icon: MessageSquareText,
+    title: "1. Írd le vagy fotózd le",
+    desc: "Egy mondatban leírod, vagy lefotózod a nyugtát, okmányt, jótállási jegyet.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "2. Ellenőrzöd, mi jóváhagyjuk",
+    desc: "A javasolt dátumot és emlékeztetőt te hagyod jóvá -- mi soha nem döntünk helyetted.",
+  },
+  {
+    icon: BellRing,
+    title: "3. Időben szólunk",
+    desc: "Email, SMS vagy chat -- ott értesítünk, ahol biztosan látod, mielőtt lejár a határidő.",
+  },
+];
 
 /**
  * Scaffold-kezdőlap: a design token rendszert és a márkát demonstrálja
@@ -70,7 +88,35 @@ export default function Home() {
         <p className="mt-6 text-[13px] text-muted">
           Bankkártya nélkül. 7 nap teljes Pro, utána ingyenes csomag.
         </p>
+
+        {/* Hogyan működik */}
+        <section className="mt-20 w-full">
+          <h2 className="text-[1.5rem] font-medium tracking-tight text-ink sm:text-[1.85rem]">
+            Hogyan működik?
+          </h2>
+          <div className="mt-8 grid gap-5 sm:grid-cols-3">
+            {HOW_IT_WORKS.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="panel min-w-0 p-5 text-left sm:p-6">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-lilac/12 text-lilac">
+                  <Icon className="h-5 w-5" strokeWidth={2} />
+                </span>
+                <p className="mt-4 font-semibold text-ink">{title}</p>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
+
+      <footer className="mx-auto mt-12 w-full max-w-content px-5 py-8 sm:px-8">
+        <div className="flex flex-col items-center justify-between gap-3 border-t border-panel-line pt-6 text-center sm:flex-row sm:text-left">
+          <p className="text-[13px] text-muted">© {new Date().getFullYear()} Elmentve. Minden jog fenntartva.</p>
+          <div className="flex items-center gap-4 text-[13px] text-muted">
+            <span>Impresszum</span>
+            <span>Adatvédelem</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
