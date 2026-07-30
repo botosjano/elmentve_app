@@ -41,7 +41,7 @@ export function BottomNav() {
           <span className="cta flex h-14 w-14 items-center justify-center rounded-full">
             <Plus className="h-7 w-7 text-[#05372d]" strokeWidth={2.5} />
           </span>
-          <span className="text-[11px] font-medium text-mint">Új mentés</span>
+          <span className="text-[11px] font-medium text-mint-ink">Új mentés</span>
         </Link>
       </div>
 

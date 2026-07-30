@@ -32,7 +32,7 @@ function ReminderRow({ r }: { r: Reminder }) {
 
       {status === "active" ? (
         <div className="flex items-center gap-2">
-          <button type="button" onClick={() => setStatus("done")} className="flex items-center gap-1.5 rounded-full border border-mint/40 px-3.5 py-2 text-sm font-semibold text-mint transition-colors hover:bg-mint/10">
+          <button type="button" onClick={() => setStatus("done")} className="flex items-center gap-1.5 rounded-full border border-mint/40 px-3.5 py-2 text-sm font-semibold text-mint-ink transition-colors hover:bg-mint/10">
             <Check className="h-4 w-4" /> Elintéztem
           </button>
           <button type="button" onClick={() => setStatus("snoozed")} className="flex items-center gap-1.5 rounded-full border border-lilac/40 px-3.5 py-2 text-sm font-semibold text-indigo transition-colors hover:bg-lilac/10">
@@ -43,7 +43,7 @@ function ReminderRow({ r }: { r: Reminder }) {
           </button>
         </div>
       ) : (
-        <button type="button" onClick={() => setStatus("active")} className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold ${status === "done" ? "bg-mint/15 text-mint" : "bg-lilac/15 text-indigo"}`}>
+        <button type="button" onClick={() => setStatus("active")} className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold ${status === "done" ? "bg-mint/15 text-mint-ink" : "bg-lilac/15 text-indigo"}`}>
           {status === "done" ? <><CheckCircle2 className="h-4 w-4" /> Elintézve</> : <><Clock className="h-4 w-4" /> Elhalasztva</>}
         </button>
       )}

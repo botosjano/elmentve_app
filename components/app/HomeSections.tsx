@@ -25,7 +25,7 @@ export function HomeSections() {
             <Link key={it.id} href={`/app/tetel/${it.id}`} className="flex items-center gap-3.5 px-4 py-4 first:rounded-t-[var(--radius-panel)] last:rounded-b-[var(--radius-panel)] hover:bg-lilac/5">
               <Thumb icon={it.icon} tint={it.tint} />
               <span className="flex-1 font-medium text-ink">{it.title}</span>
-              <span className={`text-sm ${it.soon ? "font-semibold text-mint" : "text-muted"}`}>{it.due}</span>
+              <span className={`text-sm ${it.soon ? "font-semibold text-mint-ink" : "text-muted"}`}>{it.due}</span>
               <ChevronRight className="h-4 w-4 text-muted/60" />
             </Link>
           ))}

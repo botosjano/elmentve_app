@@ -12,8 +12,12 @@ export function ServiceWorkerRegister() {
         /* a SW hiánya sosem törheti meg az appot */
       });
     };
-    window.addEventListener("load", onLoad);
-    return () => window.removeEventListener("load", onLoad);
+    if (document.readyState === "complete") {
+      onLoad();
+    } else {
+      window.addEventListener("load", onLoad);
+      return () => window.removeEventListener("load", onLoad);
+    }
   }, []);
   return null;
 }

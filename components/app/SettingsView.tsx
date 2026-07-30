@@ -25,11 +25,11 @@ function Toggle({ on, onChange, disabled }: { on: boolean; onChange: () => void;
 function Select({ value, options }: { value: string; options: string[] }) {
   const [v, setV] = useState(value);
   return (
-    <span className="relative">
+    <span className="relative block max-w-full">
       <select
         value={v}
         onChange={(e) => setV(e.target.value)}
-        className="appearance-none rounded-[var(--radius-btn)] border border-panel-line bg-white py-2.5 pl-4 pr-10 text-sm font-medium text-ink outline-none focus:border-lilac"
+        className="w-full max-w-full appearance-none rounded-[var(--radius-btn)] border border-panel-line bg-white py-2.5 pl-4 pr-10 text-sm font-medium text-ink outline-none focus:border-lilac"
       >
         {options.map((o) => <option key={o}>{o}</option>)}
       </select>
@@ -40,15 +40,15 @@ function Select({ value, options }: { value: string; options: string[] }) {
 
 function SettingRow({ icon: Icon, title, desc, control }: { icon: typeof Globe; title: string; desc: string; control: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-3.5 py-4">
+    <div className="flex flex-wrap items-center gap-x-3.5 gap-y-2 py-4">
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lilac/12 text-lilac">
         <Icon className="h-5 w-5" strokeWidth={2} />
       </span>
-      <div className="min-w-0 flex-1">
+      <div className="min-w-40 flex-1 basis-0">
         <p className="font-semibold text-ink">{title}</p>
         <p className="text-[13px] text-muted">{desc}</p>
       </div>
-      {control}
+      <span className="ml-auto max-w-full">{control}</span>
     </div>
   );
 }
@@ -63,7 +63,7 @@ export function SettingsView() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Profil és értesítések */}
-        <div className="panel p-5 sm:p-6">
+        <div className="panel min-w-0 p-5 sm:p-6">
           <div className="mb-4 flex items-center gap-2.5">
             <User className="h-5 w-5 text-lilac" />
             <h2 className="text-lg font-semibold text-ink">Profil és értesítések</h2>
@@ -107,7 +107,7 @@ export function SettingsView() {
         </div>
 
         {/* Csomag és tárhely */}
-        <div className="panel p-5 sm:p-6">
+        <div className="panel min-w-0 p-5 sm:p-6">
           <div className="mb-4 flex items-center gap-2.5">
             <Crown className="h-5 w-5 text-lilac" />
             <h2 className="text-lg font-semibold text-ink">Csomag és tárhely</h2>
@@ -119,14 +119,14 @@ export function SettingsView() {
               <div className="flex-1">
                 <div className="flex items-center justify-between gap-2">
                   <p className="font-semibold text-ink">7 napos Pro próba aktív</p>
-                  <span className="rounded-full bg-mint/20 px-2.5 py-0.5 text-[12px] font-semibold text-mint">{PLAN.trialDaysLeft} nap</span>
+                  <span className="rounded-full bg-mint/20 px-2.5 py-0.5 text-[12px] font-semibold text-mint-ink">{PLAN.trialDaysLeft} nap</span>
                 </div>
                 <p className="text-[13px] text-muted">Ennyi idő van hátra a próbaidőszakból.</p>
               </div>
             </div>
             <ul className="mt-3 flex flex-col gap-1.5 text-sm text-ink">
-              <li className="flex items-center gap-2"><Check className="h-4 w-4 text-mint" /> Minden Pro funkció elérhető</li>
-              <li className="flex items-center gap-2"><Check className="h-4 w-4 text-mint" /> Kötelezettségmentes próba – bármikor lemondható</li>
+              <li className="flex items-center gap-2"><Check className="h-4 w-4 text-mint-ink" /> Minden Pro funkció elérhető</li>
+              <li className="flex items-center gap-2"><Check className="h-4 w-4 text-mint-ink" /> Kötelezettségmentes próba – bármikor lemondható</li>
             </ul>
           </div>
 

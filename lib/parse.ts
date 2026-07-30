@@ -18,7 +18,7 @@ export type ParsedSuggestion = {
 
 // Szótövek, hogy a ragozott alakokat is felismerjük (szerdán, kedden, hétfőn...).
 const WEEKDAY_STEMS: [string, number][] = [
-  ["hétf", 1], ["kedd", 2], ["szerd", 3], ["csütört", 4], ["péntek", 5], ["pénteken", 5], ["szombat", 6], ["vasárnap", 0],
+  ["hétf", 1], ["kedd", 2], ["szerd", 3], ["csütört", 4], ["péntek", 5], ["szombat", 6], ["vasárnap", 0],
 ];
 
 const HU_MONTHS = [
@@ -81,13 +81,30 @@ export function parseInput(text: string, now: Date = new Date()): ParsedSuggesti
     date.setHours(0, 0, 0, 0);
   }
 
-  // Idő: "HH:MM" vagy "H órakor"; egyébként egész napos.
-  const hm = t.match(/(\d{1,2})[:.](\d{2})/);
-  const hourOnly = t.match(/(\d{1,2})\s*órakor/);
+  // Idő: "HH:MM" vagy "HH.MM" vagy "H órakor"; egyébként egész napos.
+  // A ":" elválasztó egyértelmű időt jelent. A "." elválasztó viszont dátumban
+  // (pl. "2026.08.05") is előfordul, ezért a dátum-mintákat előbb kimaszkoljuk,
+  // és minden találatot óra/perc tartományra validálunk (0-23 / 0-59), mielőtt elfogadnánk.
+  const withoutDates = t.replace(/\d{4}\.\s*\d{1,2}\.\s*\d{1,2}\.?/g, " ");
+  const isValidHm = (h: number, m: number) => h >= 0 && h <= 23 && m >= 0 && m <= 59;
+
   let time = "09:00";
   let allDay = true;
-  if (hm) { time = `${hm[1].padStart(2, "0")}:${hm[2]}`; allDay = false; }
-  else if (hourOnly) { time = `${hourOnly[1].padStart(2, "0")}:00`; allDay = false; }
+
+  const colonMatch = withoutDates.match(/(\d{1,2}):(\d{2})/);
+  const dotMatch = withoutDates.match(/(\d{1,2})\.(\d{2})/);
+  const hourOnly = withoutDates.match(/(\d{1,2})\s*órakor/);
+
+  if (colonMatch && isValidHm(Number(colonMatch[1]), Number(colonMatch[2]))) {
+    time = `${colonMatch[1].padStart(2, "0")}:${colonMatch[2]}`;
+    allDay = false;
+  } else if (dotMatch && isValidHm(Number(dotMatch[1]), Number(dotMatch[2]))) {
+    time = `${dotMatch[1].padStart(2, "0")}:${dotMatch[2]}`;
+    allDay = false;
+  } else if (hourOnly && isValidHm(Number(hourOnly[1]), 0)) {
+    time = `${hourOnly[1].padStart(2, "0")}:00`;
+    allDay = false;
+  }
 
   return {
     title: guessTitle(text),

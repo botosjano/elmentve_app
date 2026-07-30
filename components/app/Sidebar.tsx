@@ -10,7 +10,7 @@ import { SIDEBAR_NAV } from "./navItems";
 export function Sidebar() {
   const pathname = usePathname();
   return (
-    <aside className="hidden w-nav shrink-0 flex-col gap-8 px-5 py-8 lg:flex">
+    <aside className="hidden w-nav shrink-0 flex-col gap-8 overflow-y-auto px-5 py-8 lg:sticky lg:top-0 lg:flex lg:h-screen">
       <Link href="/app" className="flex flex-col items-center gap-2.5 px-2">
         <Image src="/brand/mark-tile.png" alt="" width={72} height={72} className="h-16 w-16 rounded-[18px] shadow-[0_14px_30px_-12px_rgba(107,94,235,0.7)]" priority />
         <Image src="/brand/wordmark.svg" alt="Elmentve" width={128} height={30} className="h-6 w-auto" priority />
