@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   User, Globe, Clock, Moon, Mail, MessageSquare, Crown, Sparkles, Check,
-  Layers, Database, ShieldCheck, Upload, Trash2, ChevronDown,
+  Layers, Database, ShieldCheck, Upload, Trash2, ChevronDown, Cookie,
 } from "lucide-react";
 import { PROFILE, PLAN } from "@/lib/mockData";
+import { openCookieSettings } from "@/lib/consent";
 
 function Toggle({ on, onChange, disabled }: { on: boolean; onChange: () => void; disabled?: boolean }) {
   return (
@@ -149,6 +151,22 @@ export function SettingsView() {
           <h2 className="text-lg font-semibold text-ink">Adatvédelem és fiók</h2>
         </div>
         <div className="divide-y divide-panel-line">
+          <div className="flex items-center gap-3.5 py-4">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lilac/12 text-lilac"><Cookie className="h-5 w-5" /></span>
+            <div className="min-w-0 flex-1">
+              <p className="font-semibold text-ink">Süti-beállítások</p>
+              <p className="text-[13px] text-muted">Módosítsd, mely süti-kategóriákat engedélyezted.</p>
+            </div>
+            <button type="button" onClick={openCookieSettings} className="rounded-[var(--radius-btn)] border border-lilac/40 bg-white px-4 py-2.5 text-sm font-semibold text-indigo transition-colors hover:bg-lilac/5">Módosítás</button>
+          </div>
+          <div className="flex items-center gap-3.5 py-4">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lilac/12 text-lilac"><ShieldCheck className="h-5 w-5" /></span>
+            <div className="min-w-0 flex-1">
+              <p className="font-semibold text-ink">Adatkezelési tájékoztató</p>
+              <p className="text-[13px] text-muted">Milyen adatot kérünk, és hogyan kezeljük.</p>
+            </div>
+            <Link href="/adatvedelem" className="rounded-[var(--radius-btn)] border border-lilac/40 bg-white px-4 py-2.5 text-sm font-semibold text-indigo transition-colors hover:bg-lilac/5">Megnyitás</Link>
+          </div>
           <div className="flex items-center gap-3.5 py-4">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lilac/12 text-lilac"><Upload className="h-5 w-5" /></span>
             <div className="min-w-0 flex-1">

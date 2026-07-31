@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Mic, ArrowRight, MessageSquareText, ShieldCheck, BellRing } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
+import { CookieSettingsLink } from "@/components/CookieSettingsLink";
 
 const HOW_IT_WORKS = [
   {
@@ -113,7 +115,10 @@ export default function Home() {
           <p className="text-[13px] text-muted">© {new Date().getFullYear()} Elmentve. Minden jog fenntartva.</p>
           <div className="flex items-center gap-4 text-[13px] text-muted">
             <span>Impresszum</span>
-            <span>Adatvédelem</span>
+            <Link href="/adatvedelem" className="transition-colors hover:text-ink">
+              Adatvédelem
+            </Link>
+            <CookieSettingsLink className="transition-colors hover:text-ink" />
           </div>
         </div>
       </footer>

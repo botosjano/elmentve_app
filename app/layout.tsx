@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
+import { CookieConsent } from "@/components/CookieConsent";
 
 // Manrope + latin-ext: a magyar ő/ű helyes megjelenítéséhez kötelező.
 const manrope = Manrope({
@@ -48,6 +49,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         {children}
         <ServiceWorkerRegister />
+        <CookieConsent />
       </body>
     </html>
   );
