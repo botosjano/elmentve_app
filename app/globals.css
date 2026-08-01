@@ -86,11 +86,44 @@ body {
   will-change: transform;
 }
 
+/* Flotta-animáció-szabvány (TerraCode scroll-reveal érzete): fade + felúszás +
+   finom blur-kiélesedés, egyszeri, amikor a blokk viewportba ér. */
+.el-reveal > * {
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  filter: blur(8px);
+  transition:
+    opacity 0.75s var(--ease-standard),
+    transform 0.8s var(--ease-standard),
+    filter 0.75s var(--ease-standard);
+  will-change: opacity, transform, filter;
+}
+.el-reveal.is-in > * {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.el-reveal.is-in > *:nth-child(1) { transition-delay: 0.05s; }
+.el-reveal.is-in > *:nth-child(2) { transition-delay: 0.16s; }
+.el-reveal.is-in > *:nth-child(3) { transition-delay: 0.27s; }
+@media (max-width: 639px) {
+  .el-reveal > * {
+    transform: translateY(22px) scale(0.98);
+    transition-duration: 0.55s;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cta {
     transition: none;
   }
   .kenburns {
     animation: none;
+  }
+  .el-reveal > * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
   }
 }

@@ -68,6 +68,11 @@ export default function RootLayout({
   return (
     <html lang="hu" className={`${manrope.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        {/* Ha a JS egyáltalán nem fut le, a .el-reveal gyerekei a statikus CSS
+            miatt opacity:0-n maradnának -- ez felülírja azokat láthatóra. */}
+        <noscript>
+          <style>{`.el-reveal > * { opacity: 1 !important; transform: none !important; filter: none !important; }`}</style>
+        </noscript>
         {children}
         <ServiceWorkerRegister />
         <CookieConsent />

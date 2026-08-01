@@ -4,6 +4,7 @@ import { Mic, ArrowRight, MessageSquareText, ShieldCheck, BellRing } from "lucid
 import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
 import { CookieSettingsLink } from "@/components/CookieSettingsLink";
+import { Reveal } from "@/components/ui/Reveal";
 
 const HOW_IT_WORKS = [
   {
@@ -96,7 +97,7 @@ export default function Home() {
           <h2 className="text-[1.5rem] font-medium tracking-tight text-ink sm:text-[1.85rem]">
             Hogyan működik?
           </h2>
-          <div className="mt-8 grid gap-5 sm:grid-cols-3">
+          <Reveal className="mt-8 grid gap-5 sm:grid-cols-3">
             {HOW_IT_WORKS.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="panel min-w-0 p-5 text-left sm:p-6">
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-lilac/12 text-lilac">
@@ -106,7 +107,7 @@ export default function Home() {
                 <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{desc}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </section>
       </main>
 
