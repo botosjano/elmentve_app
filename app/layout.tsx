@@ -12,15 +12,36 @@ const manrope = Manrope({
   display: "swap",
 });
 
+const title = "Elmentve – hétköznapi biztonsági háló";
+const description =
+  "Fotózd le. Ellenőrizd. Mi megőrizzük, és időben szólunk. Lejáratfigyelő és garanciaszéf: műszaki vizsga, okmány, biztosítás, nyugta és jótállás egy helyen.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://elmentve.hu"),
   applicationName: "Elmentve",
   title: {
-    default: "Elmentve – hétköznapi biztonsági háló",
+    default: title,
     template: "%s – Elmentve",
   },
-  description:
-    "Fotózd le. Ellenőrizd. Mi megőrizzük, és időben szólunk. Lejáratfigyelő és garanciaszéf: műszaki vizsga, okmány, biztosítás, nyugta és jótállás egy helyen.",
+  description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "hu_HU",
+    siteName: "Elmentve",
+    title,
+    description,
+    url: "https://elmentve.hu",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/og-image.jpg"],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
