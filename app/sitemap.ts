@@ -1,14 +1,15 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/siteConfig";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://elmentve.hu/",
+      url: `${SITE_URL}/`,
       changeFrequency: "monthly",
       priority: 1.0,
     },
     {
-      url: "https://elmentve.hu/adatvedelem",
+      url: `${SITE_URL}/adatvedelem`,
       changeFrequency: "yearly",
       priority: 0.3,
     },

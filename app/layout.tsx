@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
 import { CookieConsent } from "@/components/CookieConsent";
+import { SITE_URL } from "@/lib/siteConfig";
 
 // Manrope + latin-ext: a magyar ő/ű helyes megjelenítéséhez kötelező.
 const manrope = Manrope({
@@ -17,7 +18,7 @@ const description =
   "Fotózd le. Ellenőrizd. Mi megőrizzük, és időben szólunk. Lejáratfigyelő és garanciaszéf: műszaki vizsga, okmány, biztosítás, nyugta és jótállás egy helyen.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://elmentve.hu"),
+  metadataBase: new URL(SITE_URL),
   applicationName: "Elmentve",
   title: {
     default: title,
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "Elmentve",
     title,
     description,
-    url: "https://elmentve.hu",
+    url: SITE_URL,
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
