@@ -74,6 +74,19 @@ export default function RootLayout({
         <noscript>
           <style>{`.el-reveal > * { opacity: 1 !important; transform: none !important; filter: none !important; }`}</style>
         </noscript>
+        {/* Skip link -- flotta-szintű audit találat (kártya b02fa268), a
+            TerraCode mintáját követve (PR #115): sr-only + focus:not-sr-only,
+            NEM display:none (ami kivenné a fókusz-sorrendből is). Cél:
+            #main-content minden oldalon (marketing oldalak és /app/* is,
+            l. AppShell.tsx). A CookieConsent alapállapota (első látogatás,
+            döntés előtt) sima div, nem aria-modal/inert -- nincs a
+            TerraCode #101-ben talált buktató. */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[var(--radius-btn)] focus:bg-ink focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
+        >
+          Ugrás a tartalomhoz
+        </a>
         {children}
         <ServiceWorkerRegister />
         <CookieConsent />

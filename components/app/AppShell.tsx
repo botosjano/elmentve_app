@@ -12,7 +12,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="flex min-h-full flex-col lg:flex-row">
       <Sidebar />
       <MobileTopBar />
-      <main className="mx-auto w-full max-w-content flex-1 px-5 pb-28 pt-4 sm:px-8 lg:pb-10 lg:pt-8">
+      <main id="main-content" className="mx-auto w-full max-w-content flex-1 px-5 pb-28 pt-4 sm:px-8 lg:pb-10 lg:pt-8">
         {children}
       </main>
       <BottomNav />

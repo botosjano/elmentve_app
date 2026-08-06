@@ -42,7 +42,7 @@ export default function AdatvedelemPage() {
         <Logo />
       </header>
 
-      <div className="mx-auto mt-10 w-full max-w-2xl">
+      <main id="main-content" className="mx-auto mt-10 w-full max-w-2xl">
         <h1 className="text-[1.85rem] font-medium tracking-tight text-ink sm:text-[2.25rem]">
           Adatkezelési tájékoztató
         </h1>
@@ -112,7 +112,7 @@ export default function AdatvedelemPage() {
             <CookieSettingsLink className="mt-3 inline-flex rounded-[var(--radius-btn)] border border-lilac/40 bg-white px-4 py-2.5 text-sm font-semibold text-indigo transition-colors hover:bg-lilac/5" />
           </Section>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

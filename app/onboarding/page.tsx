@@ -38,7 +38,7 @@ export default function Onboarding() {
         </Link>
       </header>
 
-      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-5 pb-16 pt-6 sm:px-8 sm:pt-10">
+      <main id="main-content" className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-5 pb-16 pt-6 sm:px-8 sm:pt-10">
         <h1 className="text-center text-[2.25rem] font-semibold tracking-tight text-ink sm:text-[3rem]">
           Mit mentsünk el?
         </h1>
