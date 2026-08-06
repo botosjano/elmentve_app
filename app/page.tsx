@@ -46,7 +46,7 @@ export default function Home() {
         </Button>
       </header>
 
-      <main className="mx-auto flex w-full max-w-content flex-1 flex-col items-center px-5 pb-16 pt-8 text-center sm:px-8 sm:pt-16">
+      <main id="main-content" className="mx-auto flex w-full max-w-content flex-1 flex-col items-center px-5 pb-16 pt-8 text-center sm:px-8 sm:pt-16">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-lilac">
           Hétköznapi biztonsági háló
         </p>
