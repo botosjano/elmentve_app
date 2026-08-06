@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
 import { CookieConsent } from "@/components/CookieConsent";
+import { SkipLink } from "@/components/ui/SkipLink";
 import { SITE_URL } from "@/lib/siteConfig";
 
 // Manrope + latin-ext: a magyar ő/ű helyes megjelenítéséhez kötelező.
@@ -80,13 +81,10 @@ export default function RootLayout({
             #main-content minden oldalon (marketing oldalak és /app/* is,
             l. AppShell.tsx). A CookieConsent alapállapota (első látogatás,
             döntés előtt) sima div, nem aria-modal/inert -- nincs a
-            TerraCode #101-ben talált buktató. */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[var(--radius-btn)] focus:bg-ink focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
-        >
-          Ugrás a tartalomhoz
-        </a>
+            TerraCode #101-ben talált buktató. Külön kliens-komponensbe
+            kiemelve (SkipLink.tsx), mert a fókusz-fixhez (kártya 9f71acc2)
+            `onClick`-re van szükség, ami Server Component-ben nem elérhető. */}
+        <SkipLink />
         {children}
         <ServiceWorkerRegister />
         <CookieConsent />

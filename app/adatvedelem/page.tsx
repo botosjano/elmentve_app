@@ -42,7 +42,7 @@ export default function AdatvedelemPage() {
         <Logo />
       </header>
 
-      <main id="main-content" className="mx-auto mt-10 w-full max-w-2xl">
+      <main id="main-content" tabIndex={-1} className="mx-auto mt-10 w-full max-w-2xl">
         <h1 className="text-[1.85rem] font-medium tracking-tight text-ink sm:text-[2.25rem]">
           Adatkezelési tájékoztató
         </h1>
