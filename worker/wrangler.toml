@@ -1,0 +1,24 @@
+# Elmentve emlekezteto-motor -- Cloudflare Worker
+#
+# Titkos ertekeket NE ide irj. Deploy elott:
+#   wrangler secret put SUPABASE_URL
+#   wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+#   wrangler secret put RESEND_API_KEY
+#   wrangler secret put ADMIN_ALERT_EMAIL
+#   wrangler secret put REMINDER_FROM_EMAIL
+#   wrangler secret put RESEND_WEBHOOK_SECRET
+#
+# Lasd worker/README.md a teljes setuphoz es a nyitott dontesekhez
+# (Supabase projekt, Cloudflare account, email-szolgaltato meg nincs
+# elesben provisionalva -- ez a repo csak a kodot tartalmazza).
+
+name = "elmentve-reminder-worker"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+compatibility_flags = ["nodejs_compat"]
+
+[triggers]
+crons = ["* * * * *"]
+
+[observability]
+enabled = true
