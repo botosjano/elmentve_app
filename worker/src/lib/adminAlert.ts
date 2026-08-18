@@ -12,6 +12,7 @@ export async function sendAdminAlert(
   await provider.send({
     to: adminEmail,
     from: fromEmail,
+    replyTo: fromEmail,
     subject: `[Elmentve worker] ${subject}`,
     text: details,
     html: `<pre>${details.replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c]!)}</pre>`,

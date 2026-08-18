@@ -8,6 +8,10 @@
 export interface SendEmailInput {
   to: string;
   from: string;
+  /** Ellenőrzött válaszcím -- a spec 11. része expliciten megköveteli, hogy
+   *  legyen beállított Reply-To, ne a küldő aldomain (ertesites.elmentve.hu)
+   *  legyen az is, ahova a user visszaírhatna. */
+  replyTo: string;
   subject: string;
   html: string;
   text: string;
@@ -41,6 +45,7 @@ export class ResendEmailProvider implements EmailProvider {
       body: JSON.stringify({
         to: input.to,
         from: input.from,
+        reply_to: input.replyTo,
         subject: input.subject,
         html: input.html,
         text: input.text,

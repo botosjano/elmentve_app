@@ -6,7 +6,14 @@
 #   wrangler secret put RESEND_API_KEY
 #   wrangler secret put ADMIN_ALERT_EMAIL
 #   wrangler secret put REMINDER_FROM_EMAIL
+#   wrangler secret put REPLY_TO_EMAIL
 #   wrangler secret put RESEND_WEBHOOK_SECRET
+#   wrangler secret put UNSUBSCRIBE_SECRET
+#   wrangler secret put WORKER_BASE_URL
+#   # Opcionalis -- csak ha az SMS-csatorna elesedik:
+#   wrangler secret put TWILIO_ACCOUNT_SID
+#   wrangler secret put TWILIO_AUTH_TOKEN
+#   wrangler secret put TWILIO_FROM_NUMBER
 #
 # Lasd worker/README.md a teljes setuphoz es a nyitott dontesekhez
 # (Supabase projekt, Cloudflare account, email-szolgaltato meg nincs
@@ -22,3 +29,9 @@ crons = ["* * * * *"]
 
 [observability]
 enabled = true
+
+# Nem titkos -- csak a senderConfig.ts ellenőrzéséhez kell (a
+# REMINDER_FROM_EMAIL erre az aldomainre kell hogy végződjön). Ha üresen
+# hagyod, ez az ellenőrzés kimarad.
+[vars]
+SENDER_DOMAIN = "ertesites.elmentve.hu"
