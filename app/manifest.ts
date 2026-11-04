@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 /** Elmentve PWA manifest (mobilon telepíthető, önálló megjelenés). */
 export default function manifest(): MetadataRoute.Manifest {
   return {
