@@ -2,12 +2,12 @@ import type { NextConfig } from "next";
 
 // Cloudflare Pages build (`npm run build:pages`): a static export -- the site
 // has no API routes or middleware, so `out/` can be served as plain files.
-// next/image optimization needs a server, hence unoptimized there. The Vercel
-// build is unchanged.
+// next/image has no image server there: a custom loader points at webp variants
+// that cf/pages-images.mjs writes at build time. The Vercel build is unchanged.
 const pagesExport = process.env.PAGES_EXPORT === "1";
 
 const nextConfig: NextConfig = pagesExport
-  ? { output: "export", images: { unoptimized: true } }
+  ? { output: "export", images: { loader: "custom", loaderFile: "./cf/image-loader.ts" } }
   : {};
 
 export default nextConfig;

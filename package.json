@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:pages": "PAGES_EXPORT=1 next build",
+    "build:pages": "PAGES_EXPORT=1 next build && node cf/pages-images.mjs",
     "start": "next start",
     "lint": "eslint"
   },
